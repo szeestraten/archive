@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Significant Weather Chart</title>
+        <script src="static/js/jquery-1.6.min.js" type="text/javascript"></script>
+        <style>
+            * { font-family: serif; font-size: 10px; }
+            #container { width: 860px; height: 1216px; margin: 0 0 1em 0; }
+            #chart img { position: absolute; }
+            #buttons { position: absolute; margin: 100px 0 0 -13px; }
+            #text { margin: 1em 0; text-align: center; color: #444; }
+            ul { list-style-type: none; }
+            li { margin: 0 0 2.5px 0; }
+            button { width: 96px; height: 40px; background-color: white; }
+            button#toggle { font-weight: bold; }
+            button.active { color: #555; background: #eee }
+            input { width: 94px; text-align: center; color: black; background-color: white; }
+        </style>
+    </head>
+<body>
+    <div id="container">
+        <div id="chart">
+            <img id="bg" src="static/img/bg.png"/>
+            <img id="windtemperature" style="display: none;" src="static/img/wind.png"/>
+            <img id="icing" src="static/img/icing.png"/>
+            <img id="isobars" style="display: none;" src="static/img/isobars.png"/>
+            <img id="turbulence" src="static/img/turbulence.png"/>
+            <img id="significantclouds" src="static/img/significantclouds.png"/>
+            <img id="frontalsystems" src="static/img/frontalsystems.png"/>
+            <img id="pressuresystems" src="static/img/pressuresystems.png"/>
+            <img id="precipitation" src="static/img/precipitation.png"/>
+            <img id="obscuration" src="static/img/obscuration.png"/>
+            <img id="jetwinds" style="display: none;" src="static/img/jetwinds.png"/>
+            <img id="cloud" style="display: none;" src="static/img/cloud.png"/>
+            <img id="zerodegreeisotherm" style="display: none;" src="static/img/zerodegreeisotherm.png"/>
+            <img id="mountainobscuration" style="display: none;" src="static/img/mountainobscuration.png"/>
+            <img id="meanscfwind" style="display: none;" src="static/img/meanscfwind.png"/>
+            <img id="tropopause" style="display: none;" src="static/img/tropopause.png"/>
+            <img id="seastate" style="display: none;" src="static/img/seastate.png"/>
+            <!-- <img id="specialphenomena" src="static/img/specialphenomena.png"/> -->
+            <img id="route" src="static/img/route.png"/>
+        </div>
+        <div id="buttons">
+            <ul>
+                <li><button id="toggle">DESELECT ALL</button></li>   
+                <li><br><br></li>
+                <li><button id="route" class="default active">ROUTE</button></li>
+                <li><button id="icing" class="default active">ICING</button></li>
+                <li><button id="turbulence" class="default active">TURBULENCE</button></li>
+                <li><button id="significantclouds" class="default active">SIGNIFICANT CLOUDS</button></li>
+                <li><button id="frontalsystems" class="default active">FRONTAL SYSTEMS</button></li>
+                <li><button id="pressuresystems" class="default active">PRESSURE SYSTEMS</button></li>
+                <li><button id="precipitation" class="default active">PRECIPITATION</button></li>
+                <li><button id="obscuration" class="default active">OBSCURATION</button></li>
+                <li><button id="jetwinds">CAT / JET WINDS</button></li>
+                <li><button id="isobars">ISOBARS</button></li>
+                <li><button id="zerodegreeisotherm">ZERO DEGREE ISOTHERM</button></li>
+                <li><button id="mountainobscuration">MOUNTAIN OBSCURATION</button></li>
+                <li><button id="meanscfwind">MEAN SCF WIND</button></li>
+                <li><button id="tropopause">TROPOPAUSE</button></li>
+                <li><button id="seastate">SEA STATE & TEMP</button></li>
+                <li><button id="specialphenomena">SPECIAL PHENOMENA</button></li>
+                <li><br><br></li>
+                <li><button id="windtemperature">WIND & TEMPERATURE</button></li>
+                <li><div id="text">AT FLIGHT LEVEL</div></li>
+                <li><input value="50" disabled="disabled"></input></li>
+            </ul>
+        </div>
+    </div>
+    <script>
+        $(function() {
+            // If iPad, turn off smooth toggles
+            if (navigator.platform.indexOf("iPad") != -1) { jQuery.fx.off = true; }
+        });
+        $('button').click(function() {
+            if (this.id=="toggle") {
+                if ($(this).text() == 'DESELECT ALL') {
+                    $(this).text('SIGNIFICANT WEATHER');
+                    $('img:not(:first,#route)').hide();
+                    $('button:not(#route)').removeClass('active');
+                } else {
+                    $(this).text('DESELECT ALL');
+                    $('button[class="default"]').click()
+                }
+            } else {
+            // Toggle the image layer and the button style
+            $('img#' + this.id).fadeToggle('fast','linear');
+            $(this).toggleClass('active');
+            }
+        });
+    </script>
+</body>
+</html>
