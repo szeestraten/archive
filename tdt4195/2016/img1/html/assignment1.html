@@ -1,0 +1,385 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>assignment1</title><meta name="generator" content="MATLAB 9.0"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2016-09-09"><meta name="DC.source" content="assignment1.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h2>Contents</h2><div><ul><li><a href="#1">Reset everything and load images</a></li><li><a href="#2">Task 1: Grayscale conversion</a></li><li><a href="#3">Task 2a: Intensity Transformations</a></li><li><a href="#4">Task 2b: Intensity Transformations</a></li><li><a href="#5">Task 3</a></li><li><a href="#6">Task 3a: Spatial Convolution</a></li><li><a href="#7">Task 3b: Convolve Colour Image</a></li><li><a href="#8">Task 3c: Sobel Operators</a></li></ul></div><h2>Reset everything and load images<a name="1"></a></h2><pre class="codeinput">clear <span class="string">all</span>; close <span class="string">all</span>, clc;
+
+img1 = im2double(imread(<span class="string">'images/4.1.07-jelly-beans.tiff'</span>));
+img2 = im2double(imread(<span class="string">'images/5.2.09-aerial.tiff'</span>));
+</pre><h2>Task 1: Grayscale conversion<a name="2"></a></h2><pre class="codeinput">R = img1(:,:,1);
+G = img1(:,:,2);
+B = img1(:,:,3);
+
+gray1 = (R+G+B)/3;
+gray2 = 0.2126*R + 0.7152*G + 0.0722*B;
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 1: Grayscale conversion'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(3,2,1);
+imshow(img1);
+title(<span class="string">'Original RGB image'</span>);
+subplot(3,2,2);
+hist(img1);
+title(<span class="string">'Original RGB image'</span>);
+subplot(3,2,3);
+imshow(gray1);
+title(<span class="string">'Average grayscale conversion'</span>);
+subplot(3,2,4);
+imhist(gray1);
+title(<span class="string">'Average grayscale conversion'</span>);
+subplot(3,2,5);
+imshow(gray2);
+title(<span class="string">'Weighted grayscale conversion'</span>);
+subplot(3,2,6);
+imhist(gray2);
+title(<span class="string">'Weighted grayscale conversion'</span>);
+
+<span class="comment">% The weighted conversion is more appealing and less muted than the averaged one.</span>
+</pre><img vspace="5" hspace="5" src="assignment1_01.png" style="width:560px;height:420px;" alt=""> <h2>Task 2a: Intensity Transformations<a name="3"></a></h2><pre class="codeinput"><span class="comment">% Negative inversion</span>
+inv1 = 1 - img2;
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 2a: Intensity Transformations'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(2,2,1);
+imshow(img2);
+title(<span class="string">'Original grayscale image'</span>);
+subplot(2,2,2);
+imhist(img2);
+title(<span class="string">'Original grayscale image'</span>);
+subplot(2,2,3);
+imshow(inv1);
+title(<span class="string">'Inverted grayscale image'</span>);
+subplot(2,2,4);
+imhist(inv1);
+title(<span class="string">'Inverted grayscale image'</span>);
+</pre><img vspace="5" hspace="5" src="assignment1_02.png" style="width:560px;height:420px;" alt=""> <h2>Task 2b: Intensity Transformations<a name="4"></a></h2><pre class="codeinput">c = 1; g1 = -0.5; g2 = 0.5; g3 = 1; g4 = 2;
+gamma1 = c * img2 .^ g1;
+gamma2 = c * img2 .^ g2;
+gamma3 = c * img2 .^ g3;
+gamma4 = c * img2 .^ g4;
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 2b: Intensity Transformations'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(4,2,1);
+imshow(gamma1);
+title(<span class="string">'\gamma = -0.5'</span>);
+subplot(4,2,2);
+imhist(gamma1);
+title(<span class="string">'\gamma = -0.5'</span>);
+
+subplot(4,2,3);
+imshow(gamma2);
+title(<span class="string">'\gamma = 0.5'</span>);
+subplot(4,2,4);
+imhist(gamma2);
+title(<span class="string">'\gamma = 0.5'</span>);
+
+subplot(4,2,5);
+imshow(gamma3);
+title(<span class="string">'\gamma = 1.0'</span>);
+subplot(4,2,6);
+imhist(gamma3);
+title(<span class="string">'\gamma = 1.0'</span>);
+
+subplot(4,2,7);
+imshow(gamma4);
+title(<span class="string">'\gamma = 2.0'</span>);
+subplot(4,2,8);
+imhist(gamma4);
+title(<span class="string">'\gamma = 2.0'</span>);
+</pre><img vspace="5" hspace="5" src="assignment1_03.png" style="width:560px;height:420px;" alt=""> <h2>Task 3<a name="5"></a></h2><p>Kernels</p><pre class="codeinput">gauss = 1/256*[1 4 6 4 1; 4 16 24 16 4; 6 24 36 24 6; 4 16 24 16 4; 1 4 6 4 1];
+avg = 1/9 * ones(3);
+
+<span class="comment">% See conv3.m for the convolution function</span>
+</pre><h2>Task 3a: Spatial Convolution<a name="6"></a></h2><pre class="codeinput">img2_gauss = conv3(img2, gauss);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 3a: Spatial Convolution'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(2,2,1);
+imshow(img2);
+title(<span class="string">'Original grayscale image'</span>);
+subplot(2,2,2);
+imhist(img2);
+title(<span class="string">'Original grayscale image'</span>);
+subplot(2,2,3);
+imshow(img2_gauss);
+title(<span class="string">'Gaussian convoluted image'</span>);
+subplot(2,2,4);
+imhist(img2_gauss);
+title(<span class="string">'Gaussian convoluted image'</span>);
+</pre><img vspace="5" hspace="5" src="assignment1_04.png" style="width:560px;height:420px;" alt=""> <h2>Task 3b: Convolve Colour Image<a name="7"></a></h2><pre class="codeinput">R_gauss = conv3(R, gauss);
+G_gauss = conv3(G, gauss);
+B_gauss = conv3(B, gauss);
+
+img1_gauss = cat(3, R_gauss, G_gauss, B_gauss);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 3b: Convolve Colour Image'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(2,2,1);
+imshow(img1);
+title(<span class="string">'Original RGB image'</span>);
+subplot(2,2,2);
+hist(img1);
+title(<span class="string">'Original RGB image'</span>);
+subplot(2,2,3);
+imshow(img1_gauss);
+title(<span class="string">'Gaussian convoluted RGB image'</span>);
+subplot(2,2,4);
+hist(img1_gauss);
+title(<span class="string">'Gaussian convoluted RGB image'</span>);
+</pre><img vspace="5" hspace="5" src="assignment1_05.png" style="width:560px;height:420px;" alt=""> <h2>Task 3c: Sobel Operators<a name="8"></a></h2><pre class="codeinput">s_x = [-1 0 1; -2 0 2; -1 0 1];
+s_y = [1 2 1; 0 0 0; -1 -2 -1];
+
+img2_s_x = conv3(img2, s_x);
+img2_s_y = conv3(img2, s_y);
+img2_grad = sqrt(img2_s_x.^2 + img2_s_y.^2);
+
+figure(<span class="string">'Name'</span>,<span class="string">'Task 3c: Sobel Operators'</span>,<span class="string">'NumberTitle'</span>,<span class="string">'Off'</span>);
+subplot(2,2,1);
+imshow(img2);
+title(<span class="string">'Original grayscale image'</span>);
+subplot(2,2,2);
+imshow(img2_s_x);
+title(<span class="string">'Sobel x direction'</span>);
+subplot(2,2,3);
+imshow(img2_s_y);
+title(<span class="string">'Sobel y direction'</span>);
+subplot(2,2,4);
+imshow(img2_grad);
+title(<span class="string">'Magnitude of gradient'</span>);
+
+<span class="comment">% The magnitude of gradient tells us how much of a change there is in the</span>
+<span class="comment">% image.</span>
+</pre><img vspace="5" hspace="5" src="assignment1_06.png" style="width:560px;height:420px;" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2016a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Reset everything and load images
+clear all; close all, clc;
+
+img1 = im2double(imread('images/4.1.07-jelly-beans.tiff'));
+img2 = im2double(imread('images/5.2.09-aerial.tiff'));
+
+%% Task 1: Grayscale conversion
+
+R = img1(:,:,1);
+G = img1(:,:,2);
+B = img1(:,:,3);
+
+gray1 = (R+G+B)/3;
+gray2 = 0.2126*R + 0.7152*G + 0.0722*B;
+
+figure('Name','Task 1: Grayscale conversion','NumberTitle','Off');
+subplot(3,2,1);
+imshow(img1);
+title('Original RGB image');
+subplot(3,2,2);
+hist(img1);
+title('Original RGB image');
+subplot(3,2,3);
+imshow(gray1);
+title('Average grayscale conversion');
+subplot(3,2,4);
+imhist(gray1);
+title('Average grayscale conversion');
+subplot(3,2,5);
+imshow(gray2);
+title('Weighted grayscale conversion');
+subplot(3,2,6);
+imhist(gray2);
+title('Weighted grayscale conversion');
+
+% The weighted conversion is more appealing and less muted than the averaged one.
+
+
+%% Task 2a: Intensity Transformations
+
+% Negative inversion
+inv1 = 1 - img2;
+
+figure('Name','Task 2a: Intensity Transformations','NumberTitle','Off');
+subplot(2,2,1);
+imshow(img2);
+title('Original grayscale image');
+subplot(2,2,2);
+imhist(img2);
+title('Original grayscale image');
+subplot(2,2,3);
+imshow(inv1);
+title('Inverted grayscale image');
+subplot(2,2,4);
+imhist(inv1);
+title('Inverted grayscale image');
+
+
+%% Task 2b: Intensity Transformations
+
+c = 1; g1 = -0.5; g2 = 0.5; g3 = 1; g4 = 2;
+gamma1 = c * img2 .^ g1;
+gamma2 = c * img2 .^ g2;
+gamma3 = c * img2 .^ g3;
+gamma4 = c * img2 .^ g4;
+
+figure('Name','Task 2b: Intensity Transformations','NumberTitle','Off');
+subplot(4,2,1);
+imshow(gamma1);
+title('\gamma = -0.5');
+subplot(4,2,2);
+imhist(gamma1);
+title('\gamma = -0.5');
+
+subplot(4,2,3);
+imshow(gamma2);
+title('\gamma = 0.5');
+subplot(4,2,4);
+imhist(gamma2);
+title('\gamma = 0.5');
+
+subplot(4,2,5);
+imshow(gamma3);
+title('\gamma = 1.0');
+subplot(4,2,6);
+imhist(gamma3);
+title('\gamma = 1.0');
+
+subplot(4,2,7);
+imshow(gamma4);
+title('\gamma = 2.0');
+subplot(4,2,8);
+imhist(gamma4);
+title('\gamma = 2.0');
+
+
+%% Task 3
+% Kernels
+gauss = 1/256*[1 4 6 4 1; 4 16 24 16 4; 6 24 36 24 6; 4 16 24 16 4; 1 4 6 4 1];
+avg = 1/9 * ones(3);
+
+% See conv3.m for the convolution function
+
+
+%% Task 3a: Spatial Convolution
+img2_gauss = conv3(img2, gauss);
+
+figure('Name','Task 3a: Spatial Convolution','NumberTitle','Off');
+subplot(2,2,1);
+imshow(img2);
+title('Original grayscale image');
+subplot(2,2,2);
+imhist(img2);
+title('Original grayscale image');
+subplot(2,2,3);
+imshow(img2_gauss);
+title('Gaussian convoluted image');
+subplot(2,2,4);
+imhist(img2_gauss);
+title('Gaussian convoluted image');
+
+
+%% Task 3b: Convolve Colour Image
+
+R_gauss = conv3(R, gauss);
+G_gauss = conv3(G, gauss);
+B_gauss = conv3(B, gauss);
+
+img1_gauss = cat(3, R_gauss, G_gauss, B_gauss);
+
+figure('Name','Task 3b: Convolve Colour Image','NumberTitle','Off');
+subplot(2,2,1);
+imshow(img1);
+title('Original RGB image');
+subplot(2,2,2);
+hist(img1);
+title('Original RGB image');
+subplot(2,2,3);
+imshow(img1_gauss);
+title('Gaussian convoluted RGB image');
+subplot(2,2,4);
+hist(img1_gauss);
+title('Gaussian convoluted RGB image');
+
+
+%% Task 3c: Sobel Operators
+s_x = [-1 0 1; -2 0 2; -1 0 1];
+s_y = [1 2 1; 0 0 0; -1 -2 -1];
+
+img2_s_x = conv3(img2, s_x);
+img2_s_y = conv3(img2, s_y);
+img2_grad = sqrt(img2_s_x.^2 + img2_s_y.^2);
+
+figure('Name','Task 3c: Sobel Operators','NumberTitle','Off');
+subplot(2,2,1);
+imshow(img2);
+title('Original grayscale image');
+subplot(2,2,2);
+imshow(img2_s_x);
+title('Sobel x direction');
+subplot(2,2,3);
+imshow(img2_s_y);
+title('Sobel y direction');
+subplot(2,2,4);
+imshow(img2_grad);
+title('Magnitude of gradient');
+
+% The magnitude of gradient tells us how much of a change there is in the
+% image.
+
+##### SOURCE END #####
+--></body></html>
