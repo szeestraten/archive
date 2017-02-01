@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IT2805 - Assignment 7</title>
+    <style>
+      form input {
+        margin: 1em 0em;
+        clear: both;
+        display: block;
+      }
+
+      ul {
+        list-style: none;
+      }
+    </style>
+  </head>
+  <body>
+    <form onsubmit="event.preventDefault();">
+      <label>Input<input type="text" name="myInput" id="myInput" autofocus></label>
+      <label>Output<input type="text" name="myOutput" id="myOutput" disabled></label>
+      <button id="myButton">Add Task</button>
+    </form>
+
+    <p>Tasks</p>
+    <ul id="myTasks">
+    </ul>
+
+    <script src="./todo.js" charset="utf-8"></script>
+  </body>
+</html>

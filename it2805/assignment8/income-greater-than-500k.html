@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Income greather than 500 000</title>
+    <meta charset="UTF-8">
+    <script src="taxForms.js"></script>
+  </head>
+  <body>
+    <script>
+      // Filter function
+      function incomeGreaterThan500k(value) {
+        return value.income > 500000;
+      }
+
+      // Log array to console
+      console.log(taxForms.filter(incomeGreaterThan500k));
+    </script>
+  </body>
+</html>

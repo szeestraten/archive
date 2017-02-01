@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>A list apart</title>
+
+    <style>
+
+    ul {
+      list-style-type: square;
+    }
+
+    ul li ul li:last-child {
+      color: red;
+    }
+
+    html, body, .wrapper {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    section {
+      padding: 0.5em;
+      margin: 0.5em;
+      flex-grow: 1;
+      flex-shrink: 0;
+    }
+
+    footer {
+      background-color: lightblue;
+      width: 100%;
+    }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="wrapper">
+      <section>
+        <h1>This is a list</h1>
+
+        <ul>
+          <li>HTML5</li>
+          <li>
+            CSS
+            <ul>
+              <li>LESS</li>
+              <li>Sass</li>
+              <li>SCSS</li>
+            </ul>
+          </li>
+          <li>
+            JavaScript
+            <ul>
+              <li>React</li>
+              <li>Node</li>
+              <li>Jquery</li>
+              <li>AngularJS</li>
+              <li>Backbone</li>
+              <li>Ember</li>
+              <li>Babel</li>
+            </ul>
+          </li>
+        </ul>
+
+      </section>
+
+      <footer>Footer</footer>
+    </div>
+
+  </body>
+</html>

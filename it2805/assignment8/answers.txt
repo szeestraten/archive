@@ -1,0 +1,10 @@
+1. webgl, webgl2, bitmaprenderer
+
+2. By using arc with Math.PI and filling it with the blue color.
+
+3.
+function startsWithN(value) {
+  return value.startsWith('N');
+}
+
+const countriesStartingWithN = countries.filter(startsWithN);

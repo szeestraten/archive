@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Norwegian Tax Administration - Tax form</title>
+
+        <style>
+        body {
+            font-size: 1.25em;
+        }
+
+        input {
+            font-size: 1em;
+        }
+
+        .form-group {
+            margin: 1em 0 1em 0;
+        }
+
+        .form-group, .form-title {
+            font-weight: bold;
+        }
+
+        .form-radio {
+            font-weight: normal;
+        }
+
+        .form-title {
+            margin: 0;
+        }
+        </style>
+    </head>
+    <body>
+        <form action="http://folk.ntnu.no/michaedm/norwegian-tax-administration/receive.php" method="post">
+            <div class="form-group">
+                <label for="name">Real name:</label>
+                <input type="text" name="name" id="name" pattern="[A-Za-z ]+" required>
+            </div>
+
+            <div class="form-group">
+                <p class="form-title">Gender:</p>
+                <label class="form-radio" for="male">Male</label>
+                <input type="radio" name="gender" id="male" value="Male" required>
+                <label class="form-radio" for="female">Female</label>
+                <input type="radio" name="gender" id="female" value="Female" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" name="email" id="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="birthdate">Birthdate:</label>
+                <input type="date" name="birthdate" id="birthdate" max="1987-12-31" required>
+            </div>
+
+            <div class="form-group">
+                <label for="hero">Hero name:</label>
+                <input type="text" name="hero" id="hero" required>
+            </div>
+
+            <div class="form-group">
+                <p class="form-title">Do you wear spandex:</p>
+                <label class="form-radio" for="true">True</label>
+                <input type="radio" name="spandex" id="true" value="True" required>
+                <label class="form-radio" for="false">False</label>
+                <input type="radio" name="spandex" id="false" value="False" required>
+            </div>
+
+            <div class="form-group">
+                <label for="strength">Strength:</label>
+                <input type="number" name="strength" id="strength" min="1" max="10" step="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="speed">Speed:</label>
+                <input type="number" name="speed" id="speed" min="1" max="10" step="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="intelligence">Intelligence:</label>
+                <input type="number" name="intelligence" id="intelligence" min="1" max="10" step="1" required>
+            </div>
+
+            <div class="form-group">
+                <label for="income">Income:</label>
+                <input type="number" name="income" id="income" min="0" step="1" required oninput="calculateTax()">
+            </div>
+
+            <div class="form-group">
+                <label for="wealth">Wealth:</label>
+                <input type="number" name="wealth" id="wealth" min="0" step="1" required oninput="calculateTax()">
+            </div>
+
+            <div class="form-group">
+                <label>Tax:</label>
+                <input type="number" name="tax" id="tax" disabled>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit tax form">
+            </div>
+        </form>
+
+
+        <script type="text/javascript">
+            function calculateTax() {
+                var income = document.getElementById('income').value;
+                var wealth = document.getElementById('wealth').value;
+                var tax = (0.33 * income) + (0.20 * wealth);
+                document.getElementById('tax').value = tax;
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,3 @@
+1. Absolute positioned elements are removed from the document flow, while fixed elements stay fixed relative to the rendered browser window.
+
+2. Using the pseudo-selector such as p:nth-child(3)

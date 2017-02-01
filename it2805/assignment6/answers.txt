@@ -1,0 +1,9 @@
+1. Because 0.1 + 0.2 = 0.30000000000000004 which is not strictly equal to 0.3
+
+2. The method decides whether to the values are submitted via a POST or GET HTTP call.
+
+3. Because GET appends form-data into the URL in name/value pairs.
+
+4. Because the values can be changed client-side.
+
+5. When you need to input multi-line text.

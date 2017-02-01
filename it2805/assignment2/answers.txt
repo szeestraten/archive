@@ -1,0 +1,9 @@
+1. Inline style overrides due to the order of precedence where it is higher than in style elements and external stylesheets.
+
+2. ID are used for uniquely identifiable elements, whereas classes are used for reoccurring elements.
+
+3. RGBA are color values for Red, Green, Blue and the Alpha channel.
+
+4. Because if it is defined in the body, the browser will try to render the page before applying the style which will result in a flicker.
+
+5. arcticle p {}

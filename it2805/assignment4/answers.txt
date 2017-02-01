@@ -1,0 +1,5 @@
+1. To save bandwidth, battery and to not annoy the end user.
+
+2. That CSS snippet will not be active for a device with 320x568 so the logo should be displayed. 
+
+3. To avoid multiple codebases for the front end and also multiple configurations for the back end services such as web and caching servers.

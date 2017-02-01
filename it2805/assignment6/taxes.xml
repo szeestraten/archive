@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<superheroes>
+<hero>
+  <real_name>Nick Nedd</real_name>
+  <gender>Male</gender>
+  <email>nick@tick.com</email>
+  <birthdate>1976</birthdate>
+  <hero_name>The Tick</hero_name>
+  <spandex>Yes</spandex>
+  <strength>9</strength>
+  <speed>7</speed>
+  <intelligence>5</intelligence>
+  <wealth>0</wealth>
+  <income>90287</income>
+  <tax>29794</tax>
+</hero>
+
+<hero>
+  <real_name>Bruce Wayne</real_name>
+  <gender>Male</gender>
+  <email>bruce@wayneenterprises.com</email>
+  <birthdate>1974</birthdate>
+  <hero_name>Batman</hero_name>
+  <spandex>No</spandex>
+  <strength>7</strength>
+  <speed>4</speed>
+  <intelligence>9</intelligence>
+  <wealth>50144501</wealth>
+  <income>3343891</income>
+  <tax>11132384</tax>
+</hero>
+
+<hero>
+  <real_name>Selina Kyle</real_name>
+  <gender>Female</gender>
+  <email>selina@whiskas.com</email>
+  <birthdate>1997</birthdate>
+  <hero_name>Catwoman</hero_name>
+  <spandex>Yes</spandex>
+  <strength>6</strength>
+  <speed>6</speed>
+  <intelligence>9</intelligence>
+  <wealth>2987323</wealth>
+  <income>0</income>
+  <tax>597464</tax>
+</hero>
+</superheroes>
